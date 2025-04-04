@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/user-goal-state-visualizer/static/css/main.af9a3451.css",
+    "main.js": "/user-goal-state-visualizer/static/js/main.d9f1d7f2.js",
+    "static/js/453.1a9ad84e.chunk.js": "/user-goal-state-visualizer/static/js/453.1a9ad84e.chunk.js",
+    "index.html": "/user-goal-state-visualizer/index.html",
+    "main.af9a3451.css.map": "/user-goal-state-visualizer/static/css/main.af9a3451.css.map",
+    "main.d9f1d7f2.js.map": "/user-goal-state-visualizer/static/js/main.d9f1d7f2.js.map",
+    "453.1a9ad84e.chunk.js.map": "/user-goal-state-visualizer/static/js/453.1a9ad84e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.af9a3451.css",
+    "static/js/main.d9f1d7f2.js"
+  ]
+}
