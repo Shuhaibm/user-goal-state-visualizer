@@ -1,0 +1,1406 @@
+/* Modern Variables */
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary-color: #6b7280;
+    --secondary-hover: #4b5563;
+    --success-color: #10b981;
+    --success-hover: #059669;
+    --info-color: #3b82f6;
+    --info-hover: #2563eb;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --light-bg: #f9fafb;
+    --dark-bg: #1f2937;
+    --border-color: #e5e7eb;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-light: #9ca3af;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    --transition: all 0.2s ease-in-out;
+  /* Status message styling */
+  .status-message {
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .status-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-left: 4px solid #10b981;
+  }
+  
+  .status-error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border-left: 4px solid #ef4444;
+  }
+  
+  .status-success::before {
+    content: "✓";
+    font-weight: bold;
+  }
+  
+  .status-error::before {
+    content: "!";
+    font-weight: bold;
+  }
+  
+  /* JSON input validation styles */
+  .json-error {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2;
+  }
+  
+  /* Keyboard shortcuts */
+  .json-view {
+    background-color: #f8fafc;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    font-family: var(--font-mono);
+    overflow: auto;
+    height: 100%;
+  }
+  
+  .keyboard-shortcuts {
+    text-align: center;
+    padding: 12px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 16px;
+    background-color: var(--light-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+  }
+  
+  .keyboard-tip {
+    font-style: italic;
+    margin-top: 8px;
+  }
+  
+  /* Animation for the current message indicator */
+  .pulse-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--info-color);
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(59, 130, 246, 0);
+    }
+    
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+  }
+  }
+  
+  /* Main container styling */
+  .goal-tracker-container {
+    width: 100%;
+    max-width: 100%; /* Full width */
+    margin: 0 auto;
+    padding: 16px; /* Reduced padding */
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    background-color: white;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .goal-tracker-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 12px;
+  }
+  
+  /* Controls section */
+  .controls-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    align-items: center;
+    background-color: var(--light-bg);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .navigation-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: 6px;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .page-indicator {
+    margin: 0 12px;
+    min-width: 100px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  
+  /* Button styling to match chat aesthetics */
+  .button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+  
+  .button-small {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+  
+  .button-primary {
+    background-color: #4f46e5;
+    color: white;
+  }
+  
+  .button-info {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .controls-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    align-items: center;
+    background-color: white;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .button-secondary {
+    background-color: #64748b;
+    color: white;
+  }
+  
+  .navigation-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 6px 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
+  .page-indicator {
+    margin: 0 12px;
+    min-width: 100px;
+    text-align: center;
+    font-weight: 600;
+    color: #4b5563;
+    font-size: 15px;
+  }
+  
+  .json-input-container {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .json-textarea {
+    width: 100%;
+    height: 120px;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    resize: vertical;
+    line-height: 1.5;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+  
+  .json-textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  }
+  
+  .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .button-primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .button-primary:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+  
+  .button-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+  
+  .button-secondary:hover:not(:disabled) {
+    background-color: var(--secondary-hover);
+    transform: translateY(-1px);
+  }
+  
+  .button-success {
+    background-color: var(--success-color);
+    color: white;
+  }
+  
+  .button-success:hover:not(:disabled) {
+    background-color: var(--success-hover);
+    transform: translateY(-1px);
+  }
+  
+  .button-info {
+    background-color: var(--info-color);
+    color: white;
+  }
+  
+  .button-info:hover:not(:disabled) {
+    background-color: var(--info-hover);
+    transform: translateY(-1px);
+  }
+  
+  /* JSON input area */
+  .json-input-container {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  
+  .json-textarea {
+    width: 100%;
+    height: 150px; /* Reduced height */
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 16px; /* Increased font size */
+    resize: vertical;
+    line-height: 1.5;
+  }
+  
+  .json-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  }
+  
+  .format-help {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 16px;
+    background-color: var(--light-bg);
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .format-help p {
+    margin-bottom: 6px;
+  }
+  
+  .format-help ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  
+  .format-note {
+    color: var(--danger-color) !important;
+    font-weight: 500;
+    margin-top: 8px !important;
+    background-color: rgba(239, 68, 68, 0.1);
+    padding: 8px;
+    border-radius: var(--radius-sm);
+  }
+  
+  /* Content panels */
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Reduced gap */
+    height: calc(100vh - 280px); /* Adjusted height to fit better */
+    min-height: 500px;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+  }
+  
+  @media (min-width: 768px) {
+    .content-container {
+      flex-direction: row;
+    }
+    
+    .conversation-panel,
+    .belief-panel {
+      width: calc(50% - 8px); /* Account for the gap */
+      height: 100%;
+    }
+  }
+  
+  .panel {
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+  }
+  
+  .panel-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .state-toggle {
+    margin-left: auto;
+  }
+  
+  .state-label {
+    font-size: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    margin-left: 12px;
+  }
+  
+  /* Initial state container */
+  .initial-state-container {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px;
+    overflow-y: auto;
+    background-color: #f8fafc;
+  }
+  
+  .initial-state-message {
+    width: 100%;
+    max-width: 800px;
+    color: var(--text-primary);
+  }
+  
+  .initial-state-message h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-color);
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(79, 70, 229, 0.2);
+  }
+  
+  /* User prompt styling */
+  .user-prompt {
+    background-color: #f0f9ff;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-color);
+    line-height: 1.7;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .user-prompt-sentence {
+    margin-bottom: 10px;
+  }
+  
+  .user-prompt-sentence:last-child {
+    margin-bottom: 0;
+  }
+  
+  .no-prompt-message {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 24px;
+    padding: 20px;
+    background-color: var(--light-bg);
+    border-radius: var(--radius-md);
+  }
+  
+  /* Full Conversation History Styling */
+  .conversation-history {
+    flex: 1;
+    overflow-y: auto;
+    background-color: white;
+  }
+  
+  .message-container {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .message-container:last-child {
+    border-bottom: none;
+  }
+  
+  .message-container:hover {
+    background-color: #f1f5f9;
+  }
+  
+  .current-message {
+    background-color: #e0f2fe;
+    border-left: 4px solid var(--info-color);
+  }
+  
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .current-indicator {
+    font-size: 12px;
+    color: var(--info-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  /* Conversation styling */
+  .speaker-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  
+  .speaker-user {
+    color: var(--info-color);
+  }
+  
+  .speaker-agent {
+    color: var(--success-color);
+  }
+  
+  .utterance-text {
+    margin-top: 8px;
+    line-height: 1.6;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    padding: 4px 0;
+    font-size: 16px; /* Increased font size */
+  }
+  
+  /* Belief state styling */
+  .belief-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 15px; /* Increased font size */
+  }
+  
+  .belief-item {
+    margin-bottom: 12px;
+    background-color: #f8fafc;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+  }
+  
+  .belief-category {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    font-size: 16px; /* Increased font size */
+  }
+  
+  .belief-item-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    background-color: white;
+  }
+  
+  .belief-key {
+    margin-right: 12px;
+    flex: 1;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  
+  /* Status badges */
+  .status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 100px;
+    text-align: center;
+  }
+  
+  .status-aligned {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  
+  .status-incomplete {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  
+  .status-in-progress {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .status-misaligned {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  .status-inactive {
+    background-color: #e5e7eb;
+    color: #4b5563;
+  }
+  
+  .status-default {
+    background-color: #e5e7eb;
+    color: #374151;
+  }
+  
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .controls-container {
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .button-group {
+      width: 100%;
+      justify-content: space-between;
+    }
+    
+    .navigation-controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+  
+  /* Animations and transitions */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .belief-item, .message-container {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+  }
+
+  /* Add this to your CSS file */
+.navigation-controls-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  /* Adjust your existing navigation-controls class */
+  .navigation-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 6px 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    /* Remove width: 100% if it exists on this class */
+  }
+
+  /* Add these styles to your CSS file */
+
+/* User message styling */
+.user-message {
+    background-color: #f0f7ff; /* Light blue background */
+    border-left: 4px solid var(--info-color); /* Blue left border using your existing color variable */
+  }
+  
+  .user-message .speaker-label {
+    color: var(--info-color); /* Blue text for user label */
+  }
+  
+  .user-message:hover {
+    background-color: #e1effe; /* Slightly darker blue on hover */
+  }
+  
+  /* Agent message styling */
+  .agent-message {
+    background-color: #f0fdf4; /* Light green background */
+    border-left: 4px solid var(--success-color); /* Green left border using your existing color variable */
+  }
+  
+  .agent-message .speaker-label {
+    color: var(--success-color); /* Green text for agent label */
+  }
+  
+  .agent-message:hover {
+    background-color: #dcfce7; /* Slightly darker green on hover */
+  }
+  
+  /* Enhanced current message highlighting */
+  .current-message.user-message {
+    background-color: #dbeafe; /* Darker blue background for current user message */
+    box-shadow: var(--shadow-sm); /* Add subtle shadow to highlight current message */
+  }
+  
+  .current-message.agent-message {
+    background-color: #d1fae5; /* Darker green background for current agent message */
+    box-shadow: var(--shadow-sm); /* Add subtle shadow to highlight current message */
+  }
+  
+  /* Remove the generic blue left border for current message since we have specific ones now */
+  .current-message {
+    background-color: inherit; /* Override the previous blue background */
+    border-left-width: 4px; /* Keep the same border width */
+  }
+
+  /* Update these styles in your CSS file */
+
+/* Keep the user and agent message base styling */
+.user-message {
+    background-color: #f0f7ff; /* Light blue background */
+    border-left: 4px solid var(--info-color); /* Blue left border */
+  }
+  
+  .user-message .speaker-label {
+    color: var(--info-color); /* Blue text for user label */
+  }
+  
+  .user-message:hover {
+    background-color: #e1effe; /* Slightly darker blue on hover */
+  }
+  
+  .agent-message {
+    background-color: #f0fdf4; /* Light green background */
+    border-left: 4px solid var(--success-color); /* Green left border */
+  }
+  
+  .agent-message .speaker-label {
+    color: var(--success-color); /* Green text for agent label */
+  }
+  
+  .agent-message:hover {
+    background-color: #dcfce7; /* Slightly darker green on hover */
+  }
+  
+  /* Modified current message styling - always green for both user and agent */
+  .current-message {
+    background-color: #d1fae5 !important; /* Green background for any current message */
+    border-left: 4px solid var(--success-color) !important; /* Green left border */
+    box-shadow: var(--shadow-sm); /* Add subtle shadow to highlight current message */
+  }
+  
+  /* Optional: keep the label colors distinct even in highlighted messages */
+  .current-message.user-message .speaker-label {
+    color: var(--info-color); /* Keep user label blue even when highlighted */
+  }
+  
+  .current-message.agent-message .speaker-label {
+    color: var(--success-color); /* Keep agent label green */
+  }
+
+  /* Update these styles in your CSS file */
+
+/* Belief state content alignment */
+.belief-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    text-align: left; /* Ensure content is left-aligned */
+  }
+  
+  .json-view {
+    background-color: #f8fafc;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    font-family: var(--font-mono);
+    overflow: auto;
+    height: 100%;
+    text-align: left; /* Ensure JSON view is left-aligned */
+  }
+  
+  /* Ensure belief items are left-aligned */
+  .belief-item {
+    margin-bottom: 12px;
+    background-color: #f8fafc;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    text-align: left;
+  }
+  
+  /* Align category headers to the left */
+  .belief-category {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    font-size: 16px;
+    text-align: left;
+  }
+  
+  /* Ensure belief key-value rows are aligned properly */
+  .belief-item-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    background-color: white;
+    text-align: left;
+  }
+  
+  /* Status badges can remain centered within their element */
+  .status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 100px;
+    text-align: center; /* Keep the badge text centered within the badge */
+  }
+  
+  /* Ensure the initial state container content is left-aligned */
+  .initial-state-message {
+    width: 100%;
+    max-width: 800px;
+    color: var(--text-primary);
+    text-align: left;
+  }
+  
+  /* Only the title can be centered */
+  .initial-state-message h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-color);
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(79, 70, 229, 0.2);
+  }
+
+/* Typography improvements for better readability */
+
+/* Update root variables for better font defaults */
+:root {
+    /* Keep existing variables */
+    
+    /* Update font variables for better readability */
+    --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Roboto Mono', 'SF Mono', Consolas, monospace;
+    
+    /* Add font weight variables */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+  }
+  
+  /* Main container text */
+  .goal-tracker-container {
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    background-color: white;
+    font-size: 16px;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Improve utterance text */
+  .utterance-text {
+    margin-top: 8px;
+    line-height: 1.6;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    padding: 4px 0;
+    font-size: 16px;
+    font-weight: var(--font-weight-normal);
+    color: #111827; /* Darker text for better contrast */
+  }
+  
+  /* Belief state text improvements */
+  .belief-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    font-family: var(--font-sans); /* Changed from mono to sans for better readability */
+    font-size: 15px;
+    text-align: left;
+    line-height: 1.6;
+  }
+  
+  .belief-item {
+    margin-bottom: 12px;
+    background-color: #f8fafc;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    text-align: left;
+    font-weight: var(--font-weight-normal);
+  }
+  
+  .belief-category {
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 8px;
+    color: #374151; /* Darker color for better contrast */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    font-size: 16px;
+    text-align: left;
+  }
+  
+  .belief-key {
+    margin-right: 12px;
+    flex: 1;
+    font-weight: var(--font-weight-medium);
+    font-size: 15px;
+    color: #374151; /* Darker color for better contrast */
+  }
+  
+  /* Only use monospace for JSON view */
+  .json-view {
+    background-color: #f8fafc;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    font-family: var(--font-sans); /* Changed from mono to sans */
+    font-size: 15px;
+    overflow: auto;
+    height: 100%;
+    text-align: left;
+    line-height: 1.6;
+  }
+  
+  /* Speaker label improvements */
+  .speaker-label {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Status badge improvements */
+  .status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    min-width: 100px;
+    text-align: center;
+  }
+
+  /* Update text colors to true black for maximum readability */
+
+/* Update root variable for text color */
+:root {
+    /* Keep existing variables but update text color */
+    --text-primary: #000000; /* True black instead of #111827 */
+  }
+  
+  /* Main container text */
+  .goal-tracker-container {
+    color: #000000; /* True black */
+  }
+  
+  /* Utterance text */
+  .utterance-text {
+    color: #000000; /* True black */
+    font-weight: 400; /* Normal weight */
+  }
+  
+  /* Belief state text */
+  .belief-content {
+    color: #000000; /* True black */
+  }
+  
+  .belief-category {
+    color: #000000; /* True black */
+    font-weight: 600; /* Bold for categories */
+  }
+  
+  .belief-key {
+    color: #000000; /* True black */
+    font-weight: 500; /* Medium weight for keys */
+  }
+  
+  .belief-item-row {
+    color: #000000; /* True black */
+  }
+  
+  /* Ensure all regular text is black */
+  p, div, span {
+    color: #000000; /* True black */
+  }
+  
+  /* Maintain colored text for specific elements */
+  .speaker-label.speaker-user {
+    color: var(--info-color); /* Keep blue for user label */
+  }
+  
+  .speaker-label.speaker-agent {
+    color: var(--success-color); /* Keep green for agent label */
+  }
+  
+  /* Status badges still use their specific colors */
+  .status-badge {
+    /* Colors defined by their respective classes */
+    font-weight: 500; /* Medium weight for better visibility */
+  }
+
+  /* Improved color scheme with better contrast and less eye strain */
+
+/* Updated root variables with better contrast colors */
+:root {
+    --primary-color: #3949ab; /* Darker indigo */
+    --primary-hover: #283593; /* Even darker indigo on hover */
+    --secondary-color: #546e7a; /* Darker blue-grey */
+    --secondary-hover: #37474f; /* Even darker blue-grey on hover */
+    --success-color: #2e7d32; /* Darker green */
+    --success-hover: #1b5e20; /* Even darker green on hover */
+    --info-color: #1976d2; /* Darker blue */
+    --info-hover: #0d47a1; /* Even darker blue on hover */
+    --warning-color: #f57f17; /* Darker amber */
+    --danger-color: #c62828; /* Darker red */
+    --light-bg: #eceff1; /* Less bright background */
+    --dark-bg: #263238; /* Darker background */
+    --border-color: #b0bec5; /* More visible borders */
+    --text-primary: #000000; /* True black for main text */
+    --text-secondary: #263238; /* Very dark blue-grey for secondary text */
+    --text-light: #455a64; /* Darker blue-grey for light text */
+    
+    /* Keep other variables the same */
+  }
+  
+  /* Main container with softer background */
+  .goal-tracker-container {
+    background-color: #eceff1; /* Softer main background */
+    color: var(--text-primary);
+  }
+  
+  /* Panel backgrounds */
+  .panel {
+    background-color: #f5f7f9; /* Very slightly off-white */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); /* Stronger shadow */
+  }
+  
+  /* Panel headers with better contrast */
+  .panel-title {
+    background-color: #cfd8dc; /* Less bright background */
+    color: #263238; /* Darker text */
+    border-bottom: 1px solid #b0bec5; /* More visible border */
+  }
+  
+  /* Message containers with better coloring */
+  .user-message {
+    background-color: #e3f2fd; /* Darker blue background */
+    border-left: 4px solid var(--info-color);
+  }
+  
+  .agent-message {
+    background-color: #e8f5e9; /* Darker green background */
+    border-left: 4px solid var(--success-color);
+  }
+  
+  .user-message:hover {
+    background-color: #bbdefb; /* Even darker on hover */
+  }
+  
+  .agent-message:hover {
+    background-color: #c8e6c9; /* Even darker on hover */
+  }
+  
+  /* Current message highlighting */
+  .current-message {
+    background-color: #b2dfdb !important; /* Darker teal for highlight */
+    border-left: 4px solid #00796b !important; /* Darker teal border */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+  }
+  
+  /* JSON and belief state styling */
+  .json-view, .belief-content {
+    background-color: #f5f7f9; /* Very slightly off-white */
+  }
+  
+  .belief-item {
+    background-color: #e1e7ed; /* Slightly darker */
+    border: 1px solid #cfd8dc; /* Visible border */
+  }
+  
+  .belief-item-row {
+    background-color: #f5f7f9; /* Very slightly off-white */
+    border: 1px solid #cfd8dc; /* Visible border */
+  }
+  
+  /* Navigation controls */
+  .navigation-controls {
+    background-color: #cfd8dc; /* Less bright background */
+  }
+  
+  /* Status badges with improved contrast */
+  .status-aligned {
+    background-color: #a5d6a7; /* Darker green background */
+    color: #1b5e20; /* Darker green text */
+  }
+  
+  .status-incomplete {
+    background-color: #ffe082; /* Darker amber background */
+    color: #e65100; /* Darker amber text */
+  }
+  
+  .status-in-progress {
+    background-color: #90caf9; /* Darker blue background */
+    color: #0d47a1; /* Darker blue text */
+  }
+  
+  .status-misaligned {
+    background-color: #ef9a9a; /* Darker red background */
+    color: #b71c1c; /* Darker red text */
+  }
+  
+  .status-inactive {
+    background-color: #b0bec5; /* Darker grey background */
+    color: #263238; /* Darker grey text */
+  }
+  
+  /* JSON input area */
+  .json-textarea {
+    background-color: #f5f7f9; /* Very slightly off-white */
+    border: 1px solid #b0bec5; /* More visible border */
+    color: #000000; /* True black text */
+  }
+
+  /* Taller content boxes for conversation history and belief state */
+
+/* Increase height of the main content container */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: calc(100vh - 200px); /* Much taller - uses more of the viewport height */
+    min-height: 700px; /* Increased minimum height */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Make sure panels take up the full height */
+  .panel {
+    background-color: #f5f7f9;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Adjust media query for larger screens */
+  @media (min-width: 768px) {
+    .content-container {
+      flex-direction: row;
+    }
+    
+    .conversation-panel,
+    .belief-panel {
+      width: calc(50% - 8px);
+      height: 100%; /* Ensure full height */
+    }
+  }
+  
+  /* Ensure the scrollable content areas take up appropriate space */
+  .conversation-history,
+  .belief-content,
+  .initial-state-container {
+    flex: 1;
+    overflow-y: auto;
+    max-height: none; /* Remove any max-height restrictions */
+  }
+  
+  /* Adjust the page layout to give more space to the content */
+  .json-input-container {
+    margin-bottom: 16px; /* Reduced margin to give more space to content boxes */
+  }
+  
+  .navigation-controls-wrapper {
+    margin-bottom: 16px; /* Reduced margin to give more space to content boxes */
+  }
+  
+  /* Make keyboard shortcuts more compact */
+  .keyboard-shortcuts {
+    padding: 8px;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+/* Much taller content boxes - more aggressive approach */
+
+/* Fix the absolute height of the main container to be very tall */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 800px; /* Fixed large height instead of using viewport calculations */
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 24px; /* Add some space at the bottom */
+  }
+  
+  /* Make sure panels fill their container */
+  .panel {
+    background-color: #f5f7f9;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* For larger screens, split horizontally */
+  @media (min-width: 768px) {
+    .content-container {
+      flex-direction: row;
+    }
+    
+    .conversation-panel,
+    .belief-panel {
+      width: calc(50% - 8px);
+      height: 100%;
+    }
+  }
+  
+  /* Make scrollable areas take full remaining height */
+  .conversation-history,
+  .belief-content,
+  .initial-state-container {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  /* Reduce other element heights to give more space to content */
+  .panel-title {
+    padding: 12px 16px; /* Slightly smaller padding */
+  }
+  
+  /* Reduce top elements heights */
+  .controls-container {
+    margin-bottom: 12px;
+    padding: 10px;
+  }
+  
+  .json-input-container {
+    margin-bottom: 12px;
+  }
+  
+  .navigation-controls-wrapper {
+    margin-bottom: 12px;
+  }
+  
+  /* Make JSON textarea smaller */
+  .json-textarea {
+    height: 120px;
+  }
+  
+  /* Compact keyboard shortcuts */
+  .keyboard-shortcuts {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  
+  /* Add a media query for extra tall screens */
+  @media (min-height: 1000px) {
+    .content-container {
+      height: 900px; /* Even taller on large screens */
+    }
+  }
+
+  /* Reduce spacing between elements to fit more content on one page */
+
+/* Reduce main container spacing */
+.goal-tracker-container {
+    padding: 10px; /* Reduced from 16px */
+  }
+  
+  /* Reduce spacing between elements */
+  .goal-tracker-title {
+    margin-bottom: 12px; /* Reduced from 24px */
+    padding-bottom: 8px; /* Reduced from 12px */
+  }
+  
+  /* Tighten up all controls */
+  .controls-container {
+    margin-bottom: 8px; /* Reduced from 12px */
+    padding: 8px; /* Reduced from 10px */
+  }
+  
+  .json-input-container {
+    margin-bottom: 8px; /* Reduced from 12px */
+  }
+  
+  .navigation-controls-wrapper {
+    margin-bottom: 8px; /* Reduced from 12px */
+  }
+  
+  /* Reduce gap between panels */
+  .content-container {
+    gap: 8px; /* Reduced from 16px */
+    margin-bottom: 12px; /* Reduced from 24px */
+  }
+  
+  /* Reduce internal panel spacing */
+  .panel-title {
+    padding: 8px 12px; /* Reduced from 12px 16px */
+  }
+  
+  .belief-item {
+    margin-bottom: 6px; /* Reduced from 12px */
+    padding: 8px; /* Reduced from 12px */
+  }
+  
+  .belief-category {
+    margin-bottom: 4px; /* Reduced from 8px */
+    padding-bottom: 4px; /* Reduced from 8px */
+  }
+  
+  .belief-item-row {
+    margin-bottom: 4px; /* Reduced from 8px */
+    padding: 4px; /* Reduced from 6px */
+  }
+  
+  /* Minimize message padding */
+  .message-container {
+    padding: 8px 12px; /* Reduced from 16px */
+  }
+  
+  /* Make keyboard shortcuts more compact */
+  .keyboard-shortcuts {
+    padding: 4px;
+    margin-top: 6px;
+    font-size: 11px;
+  }
+  
+  /* Adjust spacing between belief items */
+  .belief-json-structure {
+    margin-left: 12px !important; /* Reduced from 20px for each level */
+  }
