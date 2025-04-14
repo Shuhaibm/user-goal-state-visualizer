@@ -211,6 +211,9 @@ const UserGoalStateTracker = () => {
       if (parsedData.user_prompt) {
         processedData.user_prompt = parsedData.user_prompt;
       }
+      if (parsedData.user_goal) {
+        processedData.user_prompt = parsedData.user_goal;
+      }
 
       // Handle different JSON formats
       if (parsedData.conversation && parsedData.beliefStates) {
